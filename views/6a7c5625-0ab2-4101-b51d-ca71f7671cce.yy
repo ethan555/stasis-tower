@@ -13,7 +13,8 @@
         "2d6a439d-32b8-4574-9642-0e20dead77fa",
         "c80368e5-9f3f-4128-b4ed-5584304c9e14",
         "3c264aa7-dfff-4b78-80f8-2d28ae24ac89",
-        "d8bffc46-5510-4141-86b3-118f101b52bb"
+        "d8bffc46-5510-4141-86b3-118f101b52bb",
+        "76c2b2fd-83c2-41e7-8a3d-0387827963cc"
     ],
     "filterType": "GMScript",
     "folderName": "Universal Scripts",

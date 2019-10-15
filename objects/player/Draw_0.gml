@@ -17,7 +17,7 @@ if (stasis) {
 // Draw self
 draw_self();
 // Draw the gun pointer
-if (!gun_reload) {
+if (!gun_reload && gun_active) {
     var pointer_distance = range_finder(x,y,gun_angle,GUN_RANGE,wall,false,true);
     if (pointer_distance < 0) {pointer_distance = GUN_RANGE;}
     draw_set_color(c_red);
@@ -39,5 +39,7 @@ if (!gun_reload) {
     draw_set_alpha(1);
 }
 //Draw gun
-draw_sprite_ext(gun_sp,0,x-lengthdir_x(gun_kick,gun_angle),y-lengthdir_y(gun_kick,gun_angle),
-    image_xscale,image_yscale,gun_angle,image_blend,image_alpha);
+if (gun_active) {
+    draw_sprite_ext(gun_sp,0,x-lengthdir_x(gun_kick,gun_angle),y-lengthdir_y(gun_kick,gun_angle),
+        image_xscale,image_yscale,gun_angle,image_blend,image_alpha);
+}

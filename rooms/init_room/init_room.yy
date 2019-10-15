@@ -2,7 +2,7 @@
 {
     "name": "init_room",
     "id": "9239da1c-0d6d-4003-9c3e-a4fa92b73806",
-    "creationCodeFile": "",
+    "creationCodeFile": "RoomCreationCode.gml",
     "inheritCode": false,
     "inheritCreationOrder": false,
     "inheritLayers": false,
@@ -15,7 +15,7 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Instances",
             "id": "5d544e27-8d6a-4798-bd8c-d377e2fa5420",
-            "depth": 0,
+            "depth": 10,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -34,7 +34,7 @@
             "m_serialiseFrozen": false,
             "modelName": "GMRInstanceLayer",
             "mvc": "1.0",
-            "userdefined_depth": false,
+            "userdefined_depth": true,
             "visible": true
         },
         {
@@ -44,7 +44,7 @@
             "animationFPS": 15,
             "animationSpeedType": "0",
             "colour": { "Value": 4278190080 },
-            "depth": 100,
+            "depth": 110,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,

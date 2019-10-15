@@ -18,5 +18,8 @@ for (i = 0; i < length; i += 6) {
     var damage = bullet_list[| di];
     var target = collision_circle(x2, y2,
         1, target_type, false, true);
-    if (target != noone) {deal_damage(target,damage);}
+    if (target != noone) {
+        deal_damage(target,damage);
+    }
+    add_particle(spark,x2,y2,irandom_range(3,5));
 }

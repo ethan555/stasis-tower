@@ -19,39 +19,13 @@ switch_weapon_up = input.switch_weapon_up;
 switch_weapon_down = input.switch_weapon_down;
 
 // Check if stasis has been activated
-if (mouse_right_pressed) {
+if (mouse_right_pressed && stasis_active) {
     stasis = true;
     stasis_x = mouse_x;
     stasis_y = mouse_y;
     sdist = point_distance(x,y,stasis_x,stasis_y);
 } else if (!mouse_right || stasis_ammo < 1) {
     stasis = false;
-}
-
-// Handle the gun
-if (reload) {
-    gun_ammo = 0;
-    gun_reload = true;
-}
-gun_angle = point_direction(x,y,mouse_x,mouse_y);
-if (gun_kick > 0) {
-    gun_kick --;
-} else {
-    if (!gun_reload && gun_ammo > 0) {
-        if (mouse_left) {
-            gun_shoot();
-        }
-    } else {
-        if (gun_reload) {
-            if (gun_ammo < gun_max_ammo) {
-                gun_ammo += gun_reload_speed;
-            } else {
-                gun_reload = false;
-            }
-        } else {
-            gun_reload = true;
-        }
-    }
 }
 
 // Check if player should fall, or if not, is jumping
@@ -65,7 +39,7 @@ if (!instance_place(x,y+1,wall) && !l_below) {
 
 // If stasis is on, orbit stasis point
 if (stasis == true) {
-    stasis_ammo --;
+    //stasis_ammo --;
     var spd = point_distance(0,0,xspd,yspd);
     if (spd > 0) {
         dir = point_direction(0,0,xspd,yspd);
@@ -102,8 +76,31 @@ else {
         }
     }
     // Recharge stasis
-    stasis_ammo = min(stasis_ammo+1,stasis_max);
+    //stasis_ammo = min(stasis_ammo+1,stasis_max);
 }
 
-// Self-explanatory
-check_physics();
+// Handle the gun
+if (reload) {
+    gun_ammo = 0;
+    gun_reload = true;
+}
+gun_angle = point_direction(x,y,mouse_x,mouse_y);
+if (gun_kick > 0) {
+    gun_kick --;
+} else {
+    if (!gun_reload && gun_ammo > 0 && gun_active) {
+        if (mouse_left) {
+            gun_shoot();
+        }
+    } else {
+        if (gun_reload) {
+            if (gun_ammo < gun_max_ammo) {
+                gun_ammo += gun_reload_speed;
+            } else {
+                gun_reload = false;
+            }
+        } else {
+            gun_reload = true;
+        }
+    }
+}
