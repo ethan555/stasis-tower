@@ -1,15 +1,6 @@
 /// @description 
-with (wall) {
-    draw_set_color(c_white);
-    draw_rectangle(x-1,y-1,x+sprite_width+1,y+sprite_height+1,true);
-}
-with (wall) {
-    draw_set_color(c_black);
-    draw_rectangle(x,y,x+sprite_width,y+sprite_height,false);
-}
 
 var width = sprite_get_width(ledge_left_sp);
-draw_set_alpha(.5);
 if (width != sprite_width) {
     with (ledge) {
         var left = place_meeting(x-1,y,wall);
@@ -32,4 +23,12 @@ if (width != sprite_width) {
         if (!right) {draw_sprite(ledge_right_sp,0,x+sprite_width,y);}
     }
 }
-draw_set_alpha(1);
+
+with (wall) {
+    draw_set_color(c_white);
+    draw_rectangle(x-1,y-1,x+sprite_width+1,y+sprite_height+1,true);
+}
+with (wall) {
+    draw_set_color(c_black);
+    draw_rectangle(x,y,x+sprite_width,y+sprite_height,false);
+}

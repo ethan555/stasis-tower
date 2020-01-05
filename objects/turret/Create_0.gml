@@ -1,6 +1,8 @@
 /// @description initialize
 event_inherited();
 
+physics_type = no_physics;
+
 hp = 10;
 
 gun_angle = image_angle;

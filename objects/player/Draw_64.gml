@@ -1,9 +1,13 @@
 /// @description Draw the player stats
 
-draw_set_alpha(.5);
+var window_height = display_get_gui_height();
 
-var window_height = window_get_height();
-// Draw ammo
+#region Draw gun crosshairs
+draw_sprite(crosshairs_sp,0,mouse_x,mouse_y);
+#endregion
+
+draw_set_alpha(.5);
+#region Draw ammo
 if (gun_active) {
     draw_set_color(c_white);
     var i = 0, sprite_size = 2;
@@ -12,8 +16,9 @@ if (gun_active) {
             sprite_size, sprite_size, 0, c_white, 1);
     }
 }
+#endregion
 
-// Draw stasis bar
+#region Draw stasis bar
 if (stasis_active) {
     if (!stasis) {draw_set_color(c_gray);}
     var bar_width = 20;
@@ -23,6 +28,6 @@ if (stasis_active) {
     draw_rectangle(10, window_height-10,
         10+bar_width, window_height-10-stasis_ammo*bar_height_multiplier,false);
 }
-
+#endregion
 //Don't forget to reset the alpha
 draw_set_alpha(1);

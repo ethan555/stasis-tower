@@ -5,6 +5,8 @@ r = ord("D");
 u = ord("W");
 d = ord("S");
 
+j = vk_space;
+
 spec = ord("Q");
 use = ord("E");
 rel = ord("R");
@@ -17,6 +19,8 @@ left = false;
 right = false;
 up = false;
 down = false;
+
+jump = false;
 
 special = false;
 interact = false;

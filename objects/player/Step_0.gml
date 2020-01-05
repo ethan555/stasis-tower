@@ -1,10 +1,12 @@
 /// @description Take input and check physics
 
-// Get inputs
+#region Get inputs
 left = input.left;
 right = input.right;
 up = input.up;
 down = input.down;
+
+jump = input.jump;
 
 special = input.special;
 interact = input.interact;
@@ -17,8 +19,9 @@ mouse_right = input.mouse_right;
 mouse_right_pressed = input.mouse_right_pressed;
 switch_weapon_up = input.switch_weapon_up;
 switch_weapon_down = input.switch_weapon_down;
+#endregion
 
-// Check if stasis has been activated
+#region Check if stasis has been activated
 if (mouse_right_pressed && stasis_active) {
     stasis = true;
     stasis_x = mouse_x;
@@ -27,17 +30,21 @@ if (mouse_right_pressed && stasis_active) {
 } else if (!mouse_right || stasis_ammo < 1) {
     stasis = false;
 }
+#endregion
 
-// Check if player should fall, or if not, is jumping
+#region Check if player should fall, or if not, is jumping
 var l = instance_place(x,y+1,ledge);
-var l_below = (l != noone && bbox_bottom <= l.bbox_top);
-if (!instance_place(x,y+1,wall) && !l_below) {
-    yspd = min(TERMINAL,yspd + GRAVITY);
-} else if (up) {
-    yspd = -20;
+var l_below = (l != noone && bbox_bottom < l.bbox_top);
+if (jump && (instance_place(x,y+1,collider) || l_below)) {
+    if (down && l_below) {
+        y += 1;
+    } else {
+        yspd = -JUMPSPEED;
+    }
 }
+#endregion
 
-// If stasis is on, orbit stasis point
+#region If stasis is on, orbit stasis point, otherwise move as normal
 if (stasis == true) {
     //stasis_ammo --;
     var spd = point_distance(0,0,xspd,yspd);
@@ -63,11 +70,7 @@ if (stasis == true) {
 // If stasis is not on, move as normal
 else {
     if (left || right && !(left && right)) {
-        if (left) {
-            xspd = -5;
-        } else {
-            xspd = 5;
-        }
+        xspd = clamp(xspd + (-left + right) * WALKSPEED, -WALKSPEED, WALKSPEED);
     } else {
         var s = sign(xspd);
         xspd -= s;
@@ -78,13 +81,17 @@ else {
     // Recharge stasis
     //stasis_ammo = min(stasis_ammo+1,stasis_max);
 }
+#endregion
 
-// Handle the gun
+#region Handle the gun
+var xx, yy;
+xx = round(x);
+yy = round(y);
 if (reload) {
     gun_ammo = 0;
     gun_reload = true;
 }
-gun_angle = point_direction(x,y,mouse_x,mouse_y);
+gun_angle = point_direction(xx,yy,mouse_x,mouse_y);
 if (gun_kick > 0) {
     gun_kick --;
 } else {
@@ -104,3 +111,4 @@ if (gun_kick > 0) {
         }
     }
 }
+#endregion

@@ -15,7 +15,7 @@ for (i = length - 6; i >= 0; i -= 6) {
     var x2 = bullet_list[| x2i];
     var y2 = bullet_list[| y2i];
     
-    draw_set_color(c_yellow);
+    draw_set_color(c_white);
     draw_line(x1,y1,x2,y2);
     repeat(6) {
         ds_list_delete(bullet_list,i);

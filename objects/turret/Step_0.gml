@@ -2,12 +2,7 @@
 
 // If we are dead, die
 if (hp <= 0) {
-    var wreck = instance_create_depth(x,y,depth,wreckage);
-    with(wreck) {
-        xspd = irandom_range(-10, 10);
-        yspeed = irandom_range(-10, 0);
-        sprite_index = other.sprite_index;
-    }
+    create_wreck();
     instance_destroy();
     return;
 }

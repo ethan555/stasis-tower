@@ -48,6 +48,5 @@ draw_set_alpha(1);
 */
 // Draw self
 draw_self();
-var dx = sprite_width / 2;
-draw_sprite_ext(gun_sp,0,x + dx - lengthdir_x(gun_kick,gun_angle),y + dx - lengthdir_y(gun_kick,gun_angle),
+draw_sprite_ext(gun_sp,0,x - lengthdir_x(gun_kick,gun_angle),y - lengthdir_y(gun_kick,gun_angle),
     image_xscale,image_yscale,gun_angle,image_blend,image_alpha);

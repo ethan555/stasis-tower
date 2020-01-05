@@ -5,6 +5,8 @@ right = keyboard_check(r);
 up = keyboard_check(u);
 down = keyboard_check(d);
 
+jump = keyboard_check_pressed(j);
+
 special = keyboard_check_pressed(spec);
 interact = keyboard_check_pressed(use);
 reload = keyboard_check_pressed(rel);
